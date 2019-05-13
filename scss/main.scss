@@ -1,0 +1,89 @@
+@import 'var';
+
+
+main{
+  display: grid;
+  grid-template-areas: 'asside' 'middle';
+
+
+  
+
+  .middle{
+    margin-left: $mar;
+    grid-area: middle;
+    .projects{
+      margin-top: $mar;
+      margin-bottom: $mar;
+      border-bottom: $bor;
+    }
+
+    .skills{
+      display: grid;
+      
+      .skill{
+        border: $bor;
+        background: black;
+        color: white;
+        margin-bottom: $mar/4;
+        h3{
+          margin-left: 2*$mar;
+        }
+      }
+    }
+  }
+
+  .asside{
+    grid-area: asside;
+    border-bottom: $bor;
+
+    .info, .education{
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      
+    }
+  }
+  a, a:visited, a:hover{
+    color: blue;
+    text-decoration: none;
+  }
+}  
+
+
+/* Media querry */
+
+@mixin tablet {
+  @media screen and  (min-width:768px) and(max-width: 992px){
+    @content;
+  }
+}
+
+@mixin laptop {
+  @media screen and  (min-width:993px) {
+    @content;
+  }
+}
+
+@include tablet{
+  .skills{
+    grid-template-columns: repeat(2, 45%);
+    grid-gap: 5%;
+    .skill{
+      margin-bottom: 0;
+    }
+  }
+}
+
+@include laptop{
+  main{
+    grid-template-areas: 'asside middle';
+    .asside{
+      border-bottom: 0;
+      border-right: $bor;
+    }
+  }
+  .skills{
+    grid-template-columns: repeat(4, 20%);
+    grid-gap: 5%;
+    margin-bottom: 0;
+  }
+}
